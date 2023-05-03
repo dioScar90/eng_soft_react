@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Botoes from "./Botoes";
 import homem from "./homem.jpg";
 import mulher from "./mulher.jpg";
 
@@ -73,43 +74,8 @@ function App() {
         </div>
 
         <div className="flex">
-          <div className="flex  w-1/2 h-24">
-            <div className="flex justify-center items-center  w-1/2 h-full">
-              <button
-                class="text-center bg-green-500 hover:bg-green-700 text-white text-7xl font-bold px-2 rounded-full"
-                onClick={incrementarHomem}
-              >
-                +
-              </button>
-            </div>
-            <div className="flex justify-center items-center  w-1/2 h-full">
-              <button
-                class="text-center bg-yellow-500 hover:bg-yellow-700 text-white text-4xl font-bold px-4 py-1 rounded-full"
-                onClick={decrementarHomem}
-              >
-                -
-              </button>
-            </div>
-          </div>
-
-          <div className="flex  w-1/2 h-24">
-            <div className="flex justify-center items-center  w-1/2 h-full">
-              <button
-                class="text-center bg-green-500 hover:bg-green-700 text-white text-7xl font-bold px-2 rounded-full"
-                onClick={incrementarMulher}
-              >
-                +
-              </button>
-            </div>
-            <div className="flex justify-center items-center  w-1/2 h-full">
-              <button
-                class="text-center bg-yellow-500 hover:bg-yellow-700 text-white text-4xl font-bold px-4 py-1 rounded-full"
-                onClick={decrementarMulher}
-              >
-                -
-              </button>
-            </div>
-          </div>
+          <Botoes incrementar={incrementarHomem} decrementar={decrementarHomem}/>
+          <Botoes incrementar={incrementarMulher} decrementar={decrementarMulher} />
         </div>
 
         <div className="flex">
