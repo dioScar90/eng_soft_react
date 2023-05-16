@@ -39,8 +39,8 @@ function Atv02() {
   };
 
   return (
-    <div className="bg-black flex flex-col justify-center items-center h-screen">
-        <div className="bg-white border border-black border-8 w-96 h-fit">
+    <div className="bg-black flex flex-col gap-4 justify-center items-center h-screen">
+        <div className="bg-white border border-black border-8 w-96 h-fit rounded-2xl">
             <div className="flex">
             <div className="flex w-1/5"></div>
 
@@ -109,8 +109,11 @@ function Atv02() {
             </div>
             </div>
         </div>
-        <div className="bg-white border border-black border-8 w-96 h-fit">
-          <Link to="/">&lt;&lt; Retornar para Home</Link>
+
+        <div>
+          <Link className="botao-voltar" to="/">
+            ⇐ Retornar para Home
+          </Link>
         </div>
     </div>
   );
