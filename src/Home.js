@@ -20,7 +20,11 @@ export default function Home() {
 							</li>
 
 							<li className="botao">
-								<Link to="/Atv03">Atividade 3</Link>
+								<Link to="/Atv05">Atividade 5</Link>
+							</li>
+
+							<li className="botao">
+								<Link to="/Atv07">Atividade 7</Link>
 							</li>
 						</ul>
 					</nav>

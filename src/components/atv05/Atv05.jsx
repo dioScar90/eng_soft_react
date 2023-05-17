@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const Atv03 = () => {
+const Atv05 = () => {
   const [result, setResult] = useState('');
 
   const handleClick = value => setResult(result + value);
@@ -135,4 +135,4 @@ const Atv03 = () => {
   );
 };
 
-export default Atv03;
+export default Atv05;
