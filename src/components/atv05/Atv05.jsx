@@ -31,7 +31,7 @@ const Atv05 = () => {
   const changeLastNumber = (idx, fator2) => {
     if (idx === -1) {
       setResult(eval(`${result}*${fator2}`));
-      return true;
+      return;
     }
     
     const part1 = result.substring(0, idx + 1);
@@ -39,44 +39,20 @@ const Atv05 = () => {
     const newPart2 = eval(`${part2}*${fator2}`);
     const newResult = part1 + newPart2;
     setResult(newResult);
-    return true;
   }
 
   const plusMinus = () => {
     const idx = isThereOperator();
     changeLastNumber(idx, "-1");
-
-    // if (idx === -1) {
-    //   setResult(eval(`${result}*-1`));
-    //   return;
-    // }
-    
-    // const part1 = result.substring(0, idx + 1);
-    // const part2 = result.substring(idx + 1);
-    // const newPart2 = eval(part2 + '*-1');
-    // const newResult = part1 + newPart2;
-    // setResult(newResult);
   }
 
   const percent = async () => {
     const calcBtn = document.querySelector("#calculate");
 
     const idx = await isThereOperator();
-    const changed = await changeLastNumber(idx, "0.01");
+    await changeLastNumber(idx, "0.01");
     
     calcBtn.click();
-
-    // if (idx === -1) {
-    //   setResult(eval(`${result}*0.01`));
-    //   return true;
-    // }
-    
-    // const part1 = result.substring(0, idx + 1);
-    // const part2 = result.substring(idx + 1);
-    // const newPart2 = eval(part2 + '*0.01');
-    // const newResult = part1 + newPart2;
-    // setResult(newResult);
-    // return true;
   }
 
   const clear = () => setResult('');
