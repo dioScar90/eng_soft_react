@@ -7,7 +7,7 @@ const Board = () => {
   const [flippedCards, setFlippedCards] = useState([]);
   const [matchedCards, setMatchedCards] = useState([]);
 
-  const handleCardClick = (emoji) => {
+  const handleCardClick = emoji => {
     if (flippedCards.length === 1 && flippedCards[0].emoji === emoji) {
       setMatchedCards([...matchedCards, ...flippedCards, { emoji }]);
       setFlippedCards([]);
@@ -19,20 +19,24 @@ const Board = () => {
       setFlippedCards([{ emoji }]);
     }
   };
+  
+  const mountCards = emojis => emojis.map((emoji, i) => (
+    <Card
+      key={i}
+      emoji={emoji}
+      flipped={
+        flippedCards.find((card) => card.emoji === emoji) ||
+        matchedCards.find((card) => card.emoji === emoji)
+      }
+      onClick={() => handleCardClick(emoji)}
+    />
+  ))
+
+  const cards = mountCards(emojis);
 
   return (
     <div className="flex flex-wrap justify-center">
-      {emojis.map((emoji, index) => (
-        <Card
-          key={index}
-          emoji={emoji}
-          flipped={
-            flippedCards.find((card) => card.emoji === emoji) ||
-            matchedCards.find((card) => card.emoji === emoji)
-          }
-          onClick={() => handleCardClick(emoji)}
-        />
-      ))}
+      {cards}
     </div>
   );
 };
