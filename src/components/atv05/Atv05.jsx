@@ -8,23 +8,80 @@ const Atv05 = () => {
   
   const calculate = () => {
     try {
+      console.log(result);
       setResult(eval(result));
     } catch (error) {
       setResult("Erro");
     }
   };
 
-  const plusMinus = () => {
-    // do that
+  const isThereOperator = () => {
+    const operators = ['+', '-', '*', '/'];
+
+    const idx = operators.reduce((acc, curr) => {
+      const i = result.indexOf(curr);
+      if (i > -1)
+        acc = i;
+      return acc;
+    }, -1);
+    
+    return idx;
   }
 
-  const percent = () => {
-    // do that
+  const changeLastNumber = (idx, fator2) => {
+    if (idx === -1) {
+      setResult(eval(`${result}*${fator2}`));
+      return true;
+    }
+    
+    const part1 = result.substring(0, idx + 1);
+    const part2 = result.substring(idx + 1);
+    const newPart2 = eval(`${part2}*${fator2}`);
+    const newResult = part1 + newPart2;
+    setResult(newResult);
+    return true;
+  }
+
+  const plusMinus = () => {
+    const idx = isThereOperator();
+    changeLastNumber(idx, "-1");
+
+    // if (idx === -1) {
+    //   setResult(eval(`${result}*-1`));
+    //   return;
+    // }
+    
+    // const part1 = result.substring(0, idx + 1);
+    // const part2 = result.substring(idx + 1);
+    // const newPart2 = eval(part2 + '*-1');
+    // const newResult = part1 + newPart2;
+    // setResult(newResult);
+  }
+
+  const percent = async () => {
+    const calcBtn = document.querySelector("#calculate");
+
+    const idx = await isThereOperator();
+    const changed = await changeLastNumber(idx, "0.01");
+    
+    calcBtn.click();
+
+    // if (idx === -1) {
+    //   setResult(eval(`${result}*0.01`));
+    //   return true;
+    // }
+    
+    // const part1 = result.substring(0, idx + 1);
+    // const part2 = result.substring(idx + 1);
+    // const newPart2 = eval(part2 + '*0.01');
+    // const newResult = part1 + newPart2;
+    // setResult(newResult);
+    // return true;
   }
 
   const clear = () => setResult('');
 
-  const getResult = () => result.replace('*', '×').replace('/', '÷');
+  const getResult = () => result.toString().replace('*', '×').replace('/', '÷');
   
   const classDivGrupo = () => `grid grid-cols-4 bg-black-900`;
   const classDivBotao = (mais = '') =>
@@ -49,6 +106,7 @@ const Atv05 = () => {
 
             <div className={classDivBotao()}>
               <button className="botao-calc-top" onClick={() => percent()}>%</button>
+              {/* <button className="botao-calc-top" onClick={() => handleClick("/100")}>%</button> */}
             </div>
 
             <div className={classDivBotao()}>
@@ -120,7 +178,7 @@ const Atv05 = () => {
             </div>
 
             <div className={classDivBotao()}>
-              <button className="botao-calc-op" onClick={() => calculate()}>=</button>
+              <button id="calculate" className="botao-calc-op" onClick={() => calculate()}>=</button>
             </div>
           </div>
         </div>
