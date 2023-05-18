@@ -1,18 +1,4 @@
 import ProdutoItem from "./ProdutoItem";
-import Produto from "./Produto";
-
-// const getProduto = () => ({
-//     id: 1,
-//     nome: '',
-//     preco: 1.00,
-//     descricao: '',
-//     imagem: ''
-// })
-
-const getListaProdutosProps = () => ({
-    produtos: [],
-    comprar: (produto) => { }
-})
 
 export default function ListaProdutos(listaProdutosProps) {
     return (

@@ -1,4 +1,3 @@
-import ItemCarrinho from "./ItemCarrinho";
 import Moeda from "./Moeda";
 
 export default function CarrinhoItem(propsItemCarrinho) {

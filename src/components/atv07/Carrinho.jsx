@@ -1,16 +1,6 @@
-import ItemCarrinho from "./ItemCarrinho";
 import CarrinhoItem from "./CarrinhoItem";
 import CarrinhoVazio from "./CarrinhoVazio";
 import Moeda from "./Moeda";
-
-// const getItemCarrinho = () => ({
-//     produto: getProduto(),
-//     quantidade: 0
-// })
-
-const getCarrinhoProps = () => ({
-    itens: []
-})
 
 export default function Carrinho(carrinhoProps) {
     const total = carrinhoProps.itens.reduce((soma, item) => {

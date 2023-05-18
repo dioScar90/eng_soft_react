@@ -1,5 +1,3 @@
-import Produto from "./Produto";
-
 const produtos = [
     {
         id: 1,
