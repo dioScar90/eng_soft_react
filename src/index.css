@@ -1,7 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@tailwind colors;
 
+/* ESTILIZAÇÃO GERAL */
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -27,7 +29,11 @@ code {
   @apply font-bold py-2 px-4 rounded-md;
   @apply hover:bg-zinc-700 text-white;
 }
+/* ESTILIZAÇÃO GERAL */
 
+/****************************************************************************************************************/
+
+/* CALCULADORA */
 .botao-calc-top {
   @apply rounded-full h-10 w-10 flex items-center bg-zinc-700 justify-center shadow-lg border-2 border-white hover:border-2 hover:border-gray-500 focus:outline-none;
 }
@@ -43,3 +49,50 @@ code {
 .botao-calc-num-zero {
   @apply rounded-full h-10 w-full flex items-center bg-zinc-800 justify-center shadow-lg border-2 border-white hover:border-2 hover:border-gray-500 focus:outline-none;
 }
+/* CALCULADORA */
+
+/****************************************************************************************************************/
+
+/* ESTILIZAÇÃO JOGO DA MEMÓRIA */
+body {
+  background-color: #f8fafc;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  background-color: #60a5fa;
+  border-radius: 0.5rem;
+  height: 8rem;
+  width: 8rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: #fff;
+  transition: background-color 0.3s;
+}
+
+.flipped {
+  background-color: #fff;
+  color: #000;
+}
+
+.board {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+/* ESTILIZAÇÃO JOGO DA MEMÓRIA */
