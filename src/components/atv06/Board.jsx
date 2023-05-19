@@ -1,42 +1,102 @@
-import React, { useState } from "react";
-import Card from "./Card";
+import { useState, useEffect } from 'react';
+import Card from './Card';
 
-const emojis = ['🌻', '🌷', '🌸', '🌺', '🌹', '🌼', '🌿', '🍀'];
+const emojis = [
+  '⚽️', // Futebol
+  '🏀', // Basquete
+  '🏈', // Futebol Americano
+  '⚾️', // Beisebol
+  '🎾', // Tênis
+  '🏐', // Vôlei
+  '🏉', // Rugby
+  '🏸', // Badminton
+];
+
+const shuffleCards = cards => {
+  const shuffledCards = cards.reduce((acc, curr, i) => {
+    const randomIndex = Math.floor(Math.random() * (i + 1));
+
+    acc[i] = acc[randomIndex];
+    acc[randomIndex] = curr;
+
+    return acc;
+  }, [...cards]);
+
+  return shuffledCards;
+};
 
 const Board = () => {
   const [flippedCards, setFlippedCards] = useState([]);
   const [matchedCards, setMatchedCards] = useState([]);
+  const [cards, setCards] = useState([]);
 
-  const handleCardClick = emoji => {
-    if (flippedCards.length === 1 && flippedCards[0].emoji === emoji) {
-      setMatchedCards([...matchedCards, ...flippedCards, { emoji }]);
-      setFlippedCards([]);
-    } else if (flippedCards.length === 1) {
-      setTimeout(() => {
-        setFlippedCards([]);
-      }, 1000);
-    } else {
-      setFlippedCards([{ emoji }]);
-    }
-  };
+  useEffect(() => {
+    const shuffledEmojis = shuffleCards(emojis.concat(emojis));
+    const initialCards = shuffledEmojis.map((emoji, index) => ({
+      id: index,
+      emoji,
+      flipped: false,
+      matched: false,
+    }));
+    setCards(initialCards);
+  }, []);
   
-  const mountCards = emojis => emojis.map((emoji, i) => (
-    <Card
-      key={i}
-      emoji={emoji}
-      flipped={
-        flippedCards.find((card) => card.emoji === emoji) ||
-        matchedCards.find((card) => card.emoji === emoji)
-      }
-      onClick={() => handleCardClick(emoji)}
-    />
-  ))
+  const handleCardClick = card => {
+    if (card.flipped || card.matched)
+      return;
+    
+    if (flippedCards.length === 0) {
+      setCards(
+        cards.map(c =>
+          c.id === card.id ? { ...c, flipped: true } : { ...c }
+        )
+      );
+      setFlippedCards([card]);
 
-  const cards = mountCards(emojis);
+      return;
+    }
+    
+    const flippedCard = flippedCards[0];
+    const deuMatch = flippedCard.id !== card.id && flippedCard.emoji === card.emoji;
+
+    if (deuMatch) {
+      setMatchedCards([...matchedCards, flippedCard, card]);
+
+      setCards(
+        cards.map((c) =>
+          c.id === flippedCard.id || c.id === card.id
+            ? { ...c, matched: true }
+            : c
+        )
+      );
+      setFlippedCards([]);
+
+      return;
+    }
+    
+    setTimeout(() => {
+      setCards(
+        cards.map(c =>
+          c.id === flippedCard.id || c.id === card.id
+            ? { ...c, flipped: false }
+            : c
+        )
+      );
+      setFlippedCards([]);
+    }, 1000);
+  };
 
   return (
-    <div className="flex flex-wrap justify-center">
-      {cards}
+    <div className="grid grid-cols-4 gap-4">
+      {cards.map(card => (
+        <Card
+          key={card.id}
+          emoji={card.emoji}
+          flipped={card.flipped}
+          matched={card.matched}
+          onClick={() => handleCardClick(card)}
+        />
+      ))}
     </div>
   );
 };

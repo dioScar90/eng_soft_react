@@ -1,18 +1,14 @@
-function Card({ emoji, flipped, onClick }) {
-  const classWhite = flipped ? "bg-white" : '';
-  const emojiElement = flipped ? <span className="text-4xl">{emoji}</span> : ''
-
+const Card = ({ emoji, flipped, matched, onClick }) => {
   return (
     <div
-      className={`
-        flex items-center justify-center bg-blue-500 rounded-md
-        h-20 w-20 cursor-pointer ${classWhite}
-      `}
+      className={`flex items-center justify-center bg-blue-500 rounded-md h-20 w-20 cursor-pointer ${
+        flipped || matched ? 'bg-white' : ''
+      }`}
       onClick={onClick}
     >
-      {emojiElement}
+      {flipped || matched ? <span className="text-4xl">{emoji}</span> : ''}
     </div>
   );
 };
-  
+
 export default Card;
