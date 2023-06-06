@@ -1,6 +1,6 @@
 // import React from "react";
 
-function Botoes({incrementar, decrementar}) {
+function Botoes({ incrementar, decrementar }) {
   return (
     <div className="flex  w-1/2 h-24">
       <div className="flex justify-center items-center  w-1/2 h-full">
@@ -20,7 +20,7 @@ function Botoes({incrementar, decrementar}) {
         </button>
       </div>
     </div>
-  )
+  );
 }
 
 export default Botoes;

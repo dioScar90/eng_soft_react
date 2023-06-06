@@ -17,6 +17,6 @@ function Atv06() {
       </div>
     </div>
   );
-};
+}
 
 export default Atv06;
