@@ -6,7 +6,7 @@ export default function ProdutoItem(produtoItemProps) {
     return (
         <div className={`
             flex flex-col rounded-md
-            border border-zinc-600
+            border bg-gray-300
         `}>
             <div className="flex flex-col p-3">
                 <div className="flex justify-between items-center">

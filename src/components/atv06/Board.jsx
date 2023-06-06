@@ -52,7 +52,7 @@ const Board = () => {
         )
       );
       setFlippedCards([card]);
-
+      
       return;
     }
     
@@ -73,14 +73,19 @@ const Board = () => {
 
       return;
     }
+
+    setCards(
+      cards.map(c =>
+        c.id === flippedCard.id || c.id === card.id
+          ? { ...c, flipped: true }
+          : c
+      )
+    );
+    setFlippedCards(card);
     
     setTimeout(() => {
       setCards(
-        cards.map(c =>
-          c.id === flippedCard.id || c.id === card.id
-            ? { ...c, flipped: false }
-            : c
-        )
+        cards.map(c => c.matched === true ? c : { ...c, flipped: false })
       );
       setFlippedCards([]);
     }, 1000);

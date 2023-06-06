@@ -9,7 +9,7 @@ export default function Carrinho(carrinhoProps) {
 
     return (
         <div className="flex flex-col border border-white rounded-md overflow-hidden w-4/5">
-            <div className="flex justify-between items-center bg-zinc-800 text-3xl p-3">
+            <div className="flex justify-between items-center bg-gray-200 text-3xl p-3">
                 <span>Carrinho</span>
                 <span>{Moeda.formatar(total)}</span>
             </div>
@@ -21,6 +21,14 @@ export default function Carrinho(carrinhoProps) {
                         return <CarrinhoItem key={i} { ...item } />
                     })
                 )}
+
+                <div className="flex justify-end w-screen">
+                    <button className="botao !bg-red-700 self-end flex justify-center gap-2 w-100"
+                        onClick={() => carrinhoProps.zerar()}
+                    >
+                        🛒 Zerar carrinho
+                    </button>
+                </div>
             </div>
         </div>
     )

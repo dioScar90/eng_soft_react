@@ -7,7 +7,7 @@ export default function CarrinhoItem(propsItemCarrinho) {
         `}>
             <span className={`
                 flex justify-center items-center
-                w-7 h-7 rounded-full p-2 bg-blue-700
+                w-10 h-7 rounded-full p-2 bg-blue-700
             `}>
                 {propsItemCarrinho.quantidade}
             </span>

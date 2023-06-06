@@ -2,6 +2,7 @@ import ListaProdutos from "./ListaProdutos";
 import produtos from "./produtos";
 import Carrinho from "./Carrinho";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function PaginaProdutos() {
     const [itens, setItens] = useState([]);
@@ -13,12 +14,20 @@ export default function PaginaProdutos() {
         setItens([ ...outrosItens, novoItem ]);
     }
 
+    const zerarCarrinho = () => setItens([])
+
     return (
         <div className={`
-            flex flex-col gap-10 justify-center items-center h-screen
+            bg-slate-900 flex flex-col gap-10 justify-center items-center h-screen
         `}>
-            <Carrinho itens={itens} />
+            <Carrinho itens={itens} zerar={zerarCarrinho} />
             <ListaProdutos produtos={produtos} comprar={adicionarProduto} />
+
+            <div>
+                <Link className="botao-voltar" to="/">
+                ⇐ Retornar para Home
+                </Link>
+            </div>
         </div>
     )
 }
